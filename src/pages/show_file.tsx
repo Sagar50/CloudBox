@@ -30,11 +30,13 @@ function Show_file({}: Props) {
   const filList:any = [];
   const [grid, setGrid] = useState(false);
   const [fileExt, setFileExt] = useState<any[]>([]);;
-  const curExt: string[] = ["1"];
+
 
   useEffect(() => {
     const obj = fetch("/api/retrieve").then((res) => res.json()).then((data) => {
-      setFiles(data);
+      if(data.length !== 0) {
+        setFiles(data);
+      }
     }).catch((err) => {
       console.log(err);
     });
